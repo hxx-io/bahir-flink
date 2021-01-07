@@ -75,7 +75,8 @@
       <groupId>org.apache.kudu</groupId>
       <artifactId>kudu-binary</artifactId>
       <version>${kudu.version}</version>
-      <classifier>${os.detected.classifier}</classifier>
+      <!--<classifier>${os.detected.classifier}</classifier>-->
+      <classifier>linux-x86_64</classifier>
       <scope>test</scope>
     </dependency>
 
