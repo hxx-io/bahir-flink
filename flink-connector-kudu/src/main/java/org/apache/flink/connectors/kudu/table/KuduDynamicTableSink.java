@@ -52,7 +52,7 @@ public class KuduDynamicTableSink implements DynamicTableSink {
 
     @Override
     public SinkRuntimeProvider getSinkRuntimeProvider(Context context) {
-        KuduSink upsertKuduSink = new KuduSink(writerConfigBuilder.build(), tableInfo, new UpsertOperationMapper(flinkSchema.getFieldNames()));
+        KuduSink upsertKuduSink = new KuduSink(writerConfigBuilder.build(), tableInfo, new RowUpsertOperationMapper(flinkSchema.getFieldNames()));
         return SinkFunctionProvider.of(upsertKuduSink);
     }
 
