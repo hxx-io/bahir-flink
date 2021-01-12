@@ -19,6 +19,7 @@ package org.apache.flink.connectors.kudu.table;
 import org.apache.flink.annotation.Internal;
 import org.apache.flink.connectors.kudu.connector.writer.AbstractSingleOperationMapper;
 import org.apache.flink.table.data.GenericRowData;
+import org.apache.flink.table.data.StringData;
 import org.apache.flink.types.RowKind;
 import org.apache.kudu.client.KuduTable;
 import org.apache.kudu.client.Operation;
@@ -34,6 +35,9 @@ public class RowUpsertOperationMapper extends AbstractSingleOperationMapper<Gene
 
     @Override
     public Object getField(GenericRowData input, int i) {
+        if(input.getField(i) instanceof StringData){
+            return input.getString(i).toString();
+        }
         return input.getField(i);
     }
 
