@@ -46,8 +46,10 @@ public class RowUpsertOperationMapper extends AbstractSingleOperationMapper<Gene
         RowKind kind = input.getRowKind();
         if (kind == RowKind.INSERT || kind == RowKind.UPDATE_AFTER) {
             return Optional.of(table.newUpsert());
-        }else{
+        }
+        if(kind == RowKind.DELETE){
             return Optional.of(table.newDelete());
         }
+        return Optional.empty();
     }
 }
