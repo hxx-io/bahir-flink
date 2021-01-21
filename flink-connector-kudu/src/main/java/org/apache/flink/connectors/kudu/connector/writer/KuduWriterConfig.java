@@ -33,7 +33,7 @@ import static org.apache.kudu.client.SessionConfiguration.FlushMode;
 public class KuduWriterConfig implements Serializable {
 
     private final String masters;
-    private final FlushMode flushMode;
+    private final transient FlushMode flushMode;
 
     private KuduWriterConfig(
             String masters,
@@ -48,7 +48,7 @@ public class KuduWriterConfig implements Serializable {
     }
 
     public FlushMode getFlushMode() {
-        return flushMode;
+        return FlushMode.AUTO_FLUSH_BACKGROUND;
     }
 
     @Override
